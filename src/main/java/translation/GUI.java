@@ -13,12 +13,25 @@ public class GUI {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JPanel countryPanel = new JPanel();
-            JTextField countryField = new JTextField(10);
-            countryField.setText("can");
-            countryField.setEditable(false); // we only support the "can" country code for now
-            countryPanel.add(new JLabel("Country:"));
-            countryPanel.add(countryField);
+            Translator translator = new JSONTranslator();
+            CountryCodeConverter countryConverter = new CountryCodeConverter();
+            LanguageCodeConverter languageconverter = new LanguageCodeConverter();
+
+            JPanel countryPanel = new JPanel(new BorderLayout());
+
+            String[] codes = translator.getCountryCodes().toArray(new String[0]);
+            String[] countries = new String[codes.length];
+
+            for(int i = 0; i < codes.length; i++) {
+                countries[i] = countryConverter.fromCountry(codes[i]);
+            }
+
+            JList<String> list = new JList<>(countries);
+            list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+            JScrollPane scrollPane = new JScrollPane(list);
+            scrollPane.setPreferredSize(new Dimension(150, 100));
+            countryPanel.add(scrollPane, BorderLayout.CENTER);
 
             JPanel languagePanel = new JPanel();
             JTextField languageField = new JTextField(10);
