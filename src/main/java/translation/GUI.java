@@ -70,7 +70,7 @@ public class GUI {
                     // if (result == null) {
                     //    result = "no translation found!";
                     }
-                    resultLabel.setText(result);
+                    // resultLabel.setText(result);
 
                 }
 
