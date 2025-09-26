@@ -47,8 +47,8 @@ public class CountryCodeConverter {
                     String country = parts[0];
                     String code = parts[2];
 
-                    countryCodeToCountry.put(code, country);
-                    countryToCountryCode.put(country, code);
+                    countryCodeToCountry.put(code.toLowerCase(), country);
+                    countryToCountryCode.put(country, code.toLowerCase());
                 }
 
             }
