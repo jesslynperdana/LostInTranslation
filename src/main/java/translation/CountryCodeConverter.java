@@ -45,7 +45,7 @@ public class CountryCodeConverter {
                 String[] parts = line.split("\t");
                 if (parts.length >= 2) {
                     String country = parts[0];
-                    String code = parts[1];
+                    String code = parts[2];
 
                     countryCodeToCountry.put(code, country);
                     countryToCountryCode.put(country, code);
