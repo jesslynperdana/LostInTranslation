@@ -36,7 +36,14 @@ public class GUI {
             JPanel languagePanel = new JPanel();
             JTextField languageField = new JTextField(10);
             languagePanel.add(new JLabel("Language:"));
-            languagePanel.add(languageField);
+
+            JComboBox<String> languageComboBox = new JComboBox<>();
+            for(String countryCode : translator.getCountryCodes()) {
+                 languageComboBox.addItem(countryCode);
+            }
+
+            languageComboBox.setPreferredSize(new Dimension(100,18));
+            languagePanel.add(languageComboBox);
 
             JPanel buttonPanel = new JPanel();
             JButton submit = new JButton("Submit");
