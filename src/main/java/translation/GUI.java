@@ -1,19 +1,10 @@
 package translation;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
 
 public class GUI {
 
