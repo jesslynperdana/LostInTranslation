@@ -20,8 +20,8 @@ public class GUI {
 
             JPanel countryPanel = new JPanel(new BorderLayout());
 
-            String[] codes = translator.getCountryCodes().toArray(new String[0]);
-            String[] countries = new String[codes.length];
+            String[] countryCodes = translator.getCountryCodes().toArray(new String[0]);
+            String[] countries = new String[countryCodes.length];
 
             for(int i = 0; i < codes.length; i++) {
                 countries[i] = countryConverter.fromCountryCode(codes[i]);
