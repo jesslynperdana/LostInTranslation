@@ -66,9 +66,9 @@ public class GUI {
                     // we'll need to use the real JSON version later.
                     // Translator translator = new CanadaTranslator();
 
-                    String result = translator.translate(country, language);
-                    if (result == null) {
-                        result = "no translation found!";
+                    // String result = translator.translate(country, language);
+                    // if (result == null) {
+                    //    result = "no translation found!";
                     }
                     resultLabel.setText(result);
 
