@@ -1,8 +1,18 @@
 package translation;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 
 // TODO Task D: Update the GUI for the program to align with UI shown in the README example.
@@ -35,54 +45,73 @@ public class GUI {
             countryPanel.add(scrollPane, BorderLayout.CENTER);
 
             JPanel languagePanel = new JPanel();
-            JTextField languageField = new JTextField(10);
             languagePanel.add(new JLabel("Language:"));
 
             JComboBox<String> languageComboBox = new JComboBox<>();
-            for(String countryCode : translator.getCountryCodes()) {
-                 languageComboBox.addItem(countryCode);
+
+            String[] languageCodes = translator.getLanguageCodes().toArray(new String[0]);
+            String[] languages = new String[languageCodes.length];
+
+            for(int i = 0; i < languageCodes.length; i++) {
+                languages[i] = languageConverter.fromLanguageCode(languageCodes[i]);
             }
+
+            for(int i = 0; i < languages.length; i++) {
+                languageComboBox.addItem(languages[i]);
+            }
+
 
             languageComboBox.setPreferredSize(new Dimension(100,18));
             languagePanel.add(languageComboBox);
 
-            JPanel buttonPanel = new JPanel();
-            JButton submit = new JButton("Submit");
-            buttonPanel.add(submit);
-
+            JPanel resultPanel = new JPanel();
             JLabel resultLabelText = new JLabel("Translation:");
-            buttonPanel.add(resultLabelText);
             JLabel resultLabel = new JLabel("\t\t\t\t\t\t\t");
-            buttonPanel.add(resultLabel);
-
+            resultPanel.add(resultLabelText);
+            resultPanel.add(resultLabel);
 
             // adding listener for when the user clicks the submit button
-            submit.addActionListener(new ActionListener() {
+
+            list.addListSelectionListener(new ListSelectionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    // String language = languageField.getText();
-                    // String country = countryField.getText();
+                public void valueChanged(ListSelectionEvent e) {
+                    if (!e.getValueIsAdjusting()) {
+                        String selectedCountryName = list.getSelectedValue();
+                        String selectedCountryCode = countryConverter.fromCountry(selectedCountryName);
 
-                    // for now, just using our simple translator, but
-                    // we'll need to use the real JSON version later.
-                    // Translator translator = new CanadaTranslator();
+                        String selectedLanguage = (String) languageComboBox.getSelectedItem();
+                        String selectedLanguageCode = languageConverter.fromLanguage(selectedLanguage);
 
-                    // String result = translator.translate(country, language);
-                    // if (result == null) {
-                    //    result = "no translation found!";
+                        if (selectedCountryCode != null && selectedLanguage != null) {
+                            JSONTranslation translator = new JSONTranslation();
+                            String translation = translator.getCountryNameTranslation(selectedCountryCode, selectedLanguageCode);
+
+                            //JLabel translationLabel = new JLabel(translation);
+                            resultLabel.setText(translation);
+                        };
                     }
-                    // resultLabel.setText(result);
 
-                // }
+            languageComboBox.addActionListener(l -> {
+                        String selectedCountryCode = list.getSelectedValue();
+                        String selectedLanguage = (String) languageComboBox.getSelectedItem();
 
+                        if (selectedLanguage != null && selectedCountryCode != null) {
+                            JSONTranslation translator = new JSONTranslation();
+                            String translation = translator.getCountryNameTranslation(selectedCountryCode, selectedLanguage);
+
+                            resultLabel.setText(translation);
+                        }
+                    }
+                    );
+
+                }
             });
 
             JPanel mainPanel = new JPanel();
             mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-            mainPanel.add(countryPanel);
             mainPanel.add(languagePanel);
+            mainPanel.add(resultPanel);
             mainPanel.add(countryPanel);
-            mainPanel.add(resultLabel);
 
             JFrame frame = new JFrame("Country Name Translator");
             frame.setContentPane(mainPanel);
