@@ -86,7 +86,7 @@ public class GUI {
 
                         if (selectedLanguage != null && selectedCountryCode != null) {
                             JSONTranslation translator = new JSONTranslation();
-                            String translation = translator.getCountryNameTranslation(selectedCountryCode, selectedLanguage);
+                            String translation = translator.getCountryNameTranslation(selectedCountryCode, selectedLanguageCode);
 
                             resultLabel.setText(translation);
                         }
