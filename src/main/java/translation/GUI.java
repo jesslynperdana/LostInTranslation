@@ -23,8 +23,8 @@ public class GUI {
             String[] countryCodes = translator.getCountryCodes().toArray(new String[0]);
             String[] countries = new String[countryCodes.length];
 
-            for(int i = 0; i < codes.length; i++) {
-                countries[i] = countryConverter.fromCountryCode(codes[i]);
+            for(int i = 0; i < countryCodes.length; i++) {
+                countries[i] = countryConverter.fromCountryCode(countryCodes[i]);
             }
 
             JList<String> list = new JList<>(countries);
