@@ -24,7 +24,7 @@ public class GUI {
             String[] countries = new String[codes.length];
 
             for(int i = 0; i < codes.length; i++) {
-                countries[i] = countryConverter.fromCountry(codes[i]);
+                countries[i] = countryConverter.fromCountryCode(codes[i]);
             }
 
             JList<String> list = new JList<>(countries);
