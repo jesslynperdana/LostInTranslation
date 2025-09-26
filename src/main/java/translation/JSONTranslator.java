@@ -63,8 +63,8 @@ public class JSONTranslator implements Translator {
                         String hashmapKey = countryCode + "-" + languageCode;
                         translations.put(hashmapKey, translation);
 
-                        if (!languages.contains(languageCode)) {
-                            languages.add(languageCode);
+                        if (!languageCodes.contains(languageCode)) {
+                            languageCodes.add(languageCode);
                         }
                     }
                 }
