@@ -82,6 +82,7 @@ public class GUI {
                         String selectedCountryCode = countryConverter.fromCountry(selectedCountryName);
 
                         String selectedLanguage = (String) languageComboBox.getSelectedItem();
+                        String selectedLanguageCode = languageConverter.fromLanguage(selectedLanguage);
 
                         if (selectedLanguage != null && selectedCountryCode != null) {
                             JSONTranslation translator = new JSONTranslation();
