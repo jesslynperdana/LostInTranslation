@@ -78,7 +78,9 @@ public class GUI {
                     }
 
             languageComboBox.addActionListener(l -> {
-                        String selectedCountryCode = list.getSelectedValue();
+                        String selectedCountryName = list.getSelectedValue();
+                        String selectedCountryCode = countryConverter.fromCountry(selectedCountryName);
+
                         String selectedLanguage = (String) languageComboBox.getSelectedItem();
 
                         if (selectedLanguage != null && selectedCountryCode != null) {
