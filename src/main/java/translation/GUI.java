@@ -16,7 +16,7 @@ public class GUI {
         SwingUtilities.invokeLater(() -> {
             Translator translator = new JSONTranslator();
             CountryCodeConverter countryConverter = new CountryCodeConverter();
-            LanguageCodeConverter languageconverter = new LanguageCodeConverter();
+            LanguageCodeConverter languageConverter = new LanguageCodeConverter();
 
             JPanel countryPanel = new JPanel(new BorderLayout());
 
