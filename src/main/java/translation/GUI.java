@@ -72,7 +72,7 @@ public class GUI {
                     }
                     // resultLabel.setText(result);
 
-                }
+                // }
 
             });
 
